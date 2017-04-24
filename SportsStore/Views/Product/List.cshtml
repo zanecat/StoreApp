@@ -1,17 +1,22 @@
 ﻿@model ProductsListViewModel
-@{
-    
-}
 
-@foreach(var p in Model.Products)
+
+@foreach (var p in Model.Products)
 {
-    <div>
-        <h3>@p.Name</h3>
-        @p.Description
-        <h4>@p.Price.ToString("c")</h4>
+    <div class="well">
+        <h3>
+            <strong>@p.Name</strong>
+            <span class="pull-right label label-primary">
+                @p.Price.ToString("c")
+            </span>
+            <span class="lead">@p.Description</span>
+        </h3>
     </div>
 
 }
 
-<div page-model="@Model.PageInfo" page-action="List"></div>
+<div page-model="@Model.PageInfo" page-action="List" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-default"
+     page-class-selected="btn-primary" class="btn-group pull-right">
+</div>
 
