@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models.ViewModels;
+using System.Linq;
 
 namespace SportsStore.Controllers
 {
@@ -17,17 +14,20 @@ namespace SportsStore.Controllers
             repository = repo;
         }
 
-        public ViewResult List(int page = 1)
-            => View(new ProductsListViewModel {
+        public ViewResult List(string catagory, int page = 1)
+            => View(new ProductsListViewModel
+            {
                 Products = repository.Products.OrderBy(p => p.ProductID)
-                .Skip((page -1)*PageSize)
+                .Where(p => catagory == null || p.Category == catagory)
+                .Skip((page - 1) * PageSize)
                 .Take(PageSize),
                 PageInfo = new PageInfo
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
                     TotalItems = repository.Products.Count()
-                }
+                },
+                CurrentCatagory = catagory
             });
     }
 }

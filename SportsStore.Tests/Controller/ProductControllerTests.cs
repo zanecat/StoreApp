@@ -30,7 +30,7 @@ namespace SportsStore.Tests
             controller.PageSize = 3;
 
             //Act
-            var result = controller.List(2).ViewData.Model as ProductsListViewModel;
+            var result = controller.List(null, 2).ViewData.Model as ProductsListViewModel;
 
             //Assert can send pagination view model
             PageInfo pageInfo = result.PageInfo;
