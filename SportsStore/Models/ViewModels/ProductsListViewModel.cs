@@ -6,6 +6,6 @@ namespace SportsStore.Models.ViewModels
     {
         public IEnumerable<Product> Products { get; set; }
         public PageInfo PageInfo { get; set; }
-        public string CurrentCatagory { get; set; }
+        public string CurrentCategory { get; set; }
     }
 }
