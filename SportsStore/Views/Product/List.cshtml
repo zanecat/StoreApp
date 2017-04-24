@@ -1,11 +1,9 @@
-﻿
+﻿@model ProductsListViewModel
 @{
     
 }
 
-@model IEnumerable<SportsStore.Models.Product>
-
-@foreach(var p in Model)
+@foreach(var p in Model.Products)
 {
     <div>
         <h3>@p.Name</h3>
@@ -14,4 +12,6 @@
     </div>
 
 }
+
+<div page-model="@Model.PageInfo" page-action="List"></div>
 

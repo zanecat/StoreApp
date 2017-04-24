@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SportsStore.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace SportsStore
 {
@@ -56,6 +53,13 @@ namespace SportsStore
 
             app.UseMvc(routes =>
             {
+
+                routes.MapRoute(
+                    name: "pagination",
+                    template: "Products/Page{page}",
+                    defaults: new { Controller = "Product", action = "List" }
+                    );
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Product}/{action=List}/{id?}"
