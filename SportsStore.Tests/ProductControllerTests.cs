@@ -26,8 +26,7 @@ namespace SportsStore.Tests
                 new Product {ProductID = 5, Name = "P5", Category = "Cat3"}
             });
 
-            ProductController controller = new ProductController(mock.Object);
-            controller.PageSize = 3;
+            ProductController controller = new ProductController(mock.Object) {PageSize = 3};
 
             //Act
             var result = controller.List(null, 2).ViewData.Model as ProductsListViewModel;
@@ -38,10 +37,6 @@ namespace SportsStore.Tests
             Assert.Equal(3, pageInfo.ItemsPerPage);
             Assert.Equal(5, pageInfo.TotalItems);
             Assert.Equal(3, pageInfo.TotalPages);
-
-
-
-
         }
         [Fact]
         public void Generate_Category_Specific_Product_Count()

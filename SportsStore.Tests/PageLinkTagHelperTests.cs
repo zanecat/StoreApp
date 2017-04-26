@@ -7,7 +7,8 @@ using Moq;
 using SportsStore.Infrastructure;
 using SportsStore.Models.ViewModels;
 using Xunit;
-namespace SportsStore.Tests
+
+namespace SportsStore.Tests.TagHelper
 {
     public class PageLinkTagHelperTests
     {
