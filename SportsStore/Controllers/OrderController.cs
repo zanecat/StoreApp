@@ -18,7 +18,7 @@ namespace SportsStore.Controllers
             repository = repoService;
             cart = cartService;
         }
-        public ViewResult Chechout() => View(new Order());
+        public ViewResult Checkout() => View(new Order());
 
         [HttpPost]
         public IActionResult Checkout(Order order)
