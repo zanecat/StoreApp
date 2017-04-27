@@ -5,6 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\**" />
+    <Compile Remove="Controller\**" />
+    <Compile Remove="Model\**" />
+    <Compile Remove="TagHelper\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <EmbeddedResource Remove="Controller\**" />
+    <EmbeddedResource Remove="Model\**" />
+    <EmbeddedResource Remove="TagHelper\**" />
+    <None Remove="Components\**" />
+    <None Remove="Controller\**" />
+    <None Remove="Model\**" />
+    <None Remove="TagHelper\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Moq" Version="4.7.8" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
@@ -18,13 +33,6 @@
 
   <ItemGroup>
     <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Components\" />
-    <Folder Include="Controller\" />
-    <Folder Include="Model\" />
-    <Folder Include="TagHelper\" />
   </ItemGroup>
 
 </Project>
