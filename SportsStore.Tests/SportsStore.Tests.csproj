@@ -5,10 +5,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\**" />
+    <Compile Remove="Controller\**" />
+    <Compile Remove="Model\**" />
+    <Compile Remove="TagHelper\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <EmbeddedResource Remove="Controller\**" />
+    <EmbeddedResource Remove="Model\**" />
+    <EmbeddedResource Remove="TagHelper\**" />
+    <None Remove="Components\**" />
+    <None Remove="Controller\**" />
+    <None Remove="Model\**" />
+    <None Remove="TagHelper\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Moq" Version="4.7.8" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
     <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.MSBuild" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -13,7 +13,6 @@ namespace SportsStore.Controllers
         {
             repository = repo;
         }
-
         public ViewResult List(string category, int page = 1)
             => View(new ProductsListViewModel
             {
