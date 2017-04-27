@@ -51,10 +51,7 @@ namespace SportsStore.Controllers
             {
                 cart.RemoveLine(product);
             }
-            return RedirectToAction("Index", new
-            {
-                returnUrl
-            });
+            return RedirectToAction("Index", new { returnUrl });
         }
 
         private Cart GetCart()
