@@ -1,4 +1,5 @@
-﻿using SportsStore.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using SportsStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SportsStore.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductRepository repository;

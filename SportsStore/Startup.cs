@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SportsStore.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace SportsStore
 {
@@ -20,6 +21,7 @@ namespace SportsStore
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
 
@@ -38,6 +40,12 @@ namespace SportsStore
             services.AddMemoryCache();
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration["Data:SportsStoreIdentity:ConnectionString"]));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,14 +61,19 @@ namespace SportsStore
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
             }
 
             app.UseStaticFiles();
             app.UseSession();
-
+            app.UseIdentity();
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "Error",
+                    template: "Error",
+                    defaults: new { controller = "Error", action = "Error" });
+
                 routes.MapRoute(
                     name: null,
                     template: "{category}/Page{page:int}",
@@ -84,6 +97,7 @@ namespace SportsStore
             });
 
             SeedData.EnsurePopulated(app);
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
