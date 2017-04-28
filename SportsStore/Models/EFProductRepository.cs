@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,6 +34,18 @@ namespace SportsStore.Models
                 }
             }
             context.SaveChanges();
+        }
+
+        public Product DeleteProduct(int productID)
+        {
+            var product = context.Products.FirstOrDefault(p => p.ProductID == productID);
+
+            if (product != null)
+            {
+                context.Products.Remove(product);
+                context.SaveChanges();
+            }
+            return product;
         }
     }
 }
